@@ -1,0 +1,15 @@
+[Unit]
+Description=X Server for Webcam HDMI Converter
+Before=webcam-hdmi-converter.service
+After=systemd-user-sessions.service
+
+[Service]
+Type=simple
+User=actua
+ExecStart=/usr/bin/startx
+Restart=always
+RestartSec=3
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=multi-user.target

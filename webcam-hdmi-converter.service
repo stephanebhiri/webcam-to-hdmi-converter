@@ -1,0 +1,23 @@
+[Unit]
+Description=Webcam to HDMI Converter
+After=graphical.target network.target
+Wants=graphical.target
+
+[Service]
+Type=simple
+User=actua
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/actua/.Xauthority"
+ExecStart=/home/actua/webcam-hdmi-converter/webcam-display.sh
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Security and resource settings
+Nice=-10
+IOSchedulingClass=realtime
+IOSchedulingPriority=0
+
+[Install]
+WantedBy=graphical.target

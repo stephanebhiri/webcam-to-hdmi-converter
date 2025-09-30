@@ -1,0 +1,12 @@
+[Unit]
+Description=Force HDMI to 1080p50
+Before=webcam-hdmi-converter-kms.service
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'echo "1920x1080" > /sys/class/drm/card0-HDMI-A-1/mode 2>/dev/null || true'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

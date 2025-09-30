@@ -1,0 +1,21 @@
+[Unit]
+Description=Webcam to HDMI Converter (KMS Direct)
+After=systemd-user-sessions.service
+Wants=systemd-user-sessions.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/actua/webcam-hdmi-converter/webcam-display-kms.sh
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Performance settings
+Nice=-10
+IOSchedulingClass=realtime
+IOSchedulingPriority=0
+
+[Install]
+WantedBy=multi-user.target

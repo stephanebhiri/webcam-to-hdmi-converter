@@ -1,0 +1,5 @@
+# Udev rule for USB webcam hotplug detection
+# Automatically restart the webcam-hdmi-converter service when a USB video device is connected
+
+ACTION=="add", SUBSYSTEM=="video4linux", ATTR{index}=="0", TAG+="systemd", ENV{SYSTEMD_WANTS}="webcam-hdmi-converter.service"
+ACTION=="add", SUBSYSTEM=="usb", ENV{ID_USB_INTERFACES}=="*:0e0[123]*", RUN+="/bin/systemctl restart webcam-hdmi-converter.service"
